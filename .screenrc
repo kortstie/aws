@@ -1,29 +1,3 @@
-yum install -y screen ansible vim git -y
-yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum install python-pip
-pip install boto
-yum update -y
-
-
-mkdir  /opt/ansible /opt/ansible/roles /opt/ansible/inventory /opt/ansible/log
-cp /etc/ansible/ansible.cfg /opt/ansible
-
-cat <<EOF >> /opt/ansible/ansible.cfg
-inventory      = /opt/ansible/inventory/
-forks          = 5
-roles_path    = ./roles
-host_key_checking = False
-EOF
-
-
-
-sed -i 's/%wheel\s*ALL=(ALL)\s*ALL/#%wheel  ALL=(ALL)       ALL/' /etc/sudoers
-sed -i 's/#\s*%wheel\s*ALL=(ALL)\s*NOPASSWD:\s*ALL/%wheel        ALL=(ALL)       NOPASSWD: ALL/' /etc/sudoers
-
-useradd -u 1615 -G wheel kortstie
-userdel -fr ec2-user
-
-
 # define a nice status line
 caption always "%{= bw} %-w%{= BW} [%n %t] %{-}%+w %= | @%H | %Y-%m-%d %c "
 #caption always "%?%F%{.bW}%:%{.BW}%?%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %d/%m %C%a "
@@ -76,8 +50,3 @@ termcapinfo  xterm 'Z0=\E[?3h:Z1=\E[?3l:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 termcapinfo xterm 'VR=\E[?5h:VN=\E[?5l'
 termcapinfo xterm 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
 termcapinfo xterm 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
-
-
-+++++++++++++++++
-
-git clone https://github.com/kortstie/aws.git
