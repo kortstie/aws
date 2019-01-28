@@ -11,7 +11,7 @@ PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 export PATH
 
-export AWS_ACCESS_KEY_ID=<Key ID>
-export AWS_SECRET_ACCESS_KEY=<Secret>
+export AWS_ACCESS_KEY_ID=KeyID
+export AWS_SECRET_ACCESS_KEY=Secret
 
 eval `ssh-agent`; ssh-add
